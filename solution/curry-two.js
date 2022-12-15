@@ -4,8 +4,7 @@
  */
 export default function curry(func) {
   return function curried(...args) {
-    // func.length is the number of arguments
-    if (args.length >= func.length) {
+    if (args.length === func.length) {
       return func.apply(this, args);
     }
 
@@ -21,8 +20,11 @@ function multiplyThree(a, b, c) {
 
 const curriedMultiplyThree = curry(multiplyThree);
 curriedMultiplyThree(4)(5)(6); // 120
-console.log(curriedMultiplyThree(4, 5, 6, 7));
+curriedMultiplyThree(4)(5, 6); // 120
+curriedMultiplyThree(4, 5)(6); // 120
+curriedMultiplyThree(4, 5, 6); // 120
+console.log(curriedMultiplyThree(4, 5)(3));
 
 const containsFour = curriedMultiplyThree(4);
 const containsFourMulFive = containsFour(5);
-containsFourMulFive(6);
+containsFourMulFive(6); // 120
