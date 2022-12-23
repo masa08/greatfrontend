@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <form
+      action="https://www.greatfrontend.com/api/questions/contact-form"
+      method="POST"
+    >
+      <div>
+        <label for="name">Name</label>
+        <input id="name" type="text" name="name" />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input id="email" type="text" name="email" />
+      </div>
+      <div>
+        <label for="message">Message</label>
+        <textarea id="message" name="message"></textarea>
+      </div>
+      <div>
+        <button>Send</button>
+      </div>
+    </form>
+    <!-- You can ignore this file, it is only used by GFE to
+      intercept the form submission event. -->
+    <script src="src/index.js"></script>
+  </body>
+</html>
+
+<style>
+  body {
+    font-family: sans-serif;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+  }
+
+  input,
+  label {
+    display: block;
+  }
+</style>
