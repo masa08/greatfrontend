@@ -14,6 +14,13 @@ Function.prototype.myBind = function (thisArg, ...boundArgs) {
   };
 };
 
+Function.prototype.myBind2 = function (thisArg, ...argArray) {
+  const originalFunc = this;
+  return function (...args) {
+    return originalFunc.apply(thisArg, [...argArray, ...args]);
+  };
+};
+
 const john = {
   age: 42,
   getAge: function () {
