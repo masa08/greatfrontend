@@ -9,8 +9,9 @@ export default function curry(func) {
       return func.apply(this, args);
     }
 
+    const self = this;
     return function (...args2) {
-      return curried.apply(this, [...args, ...args2]);
+      return curried.apply(self, [...args, ...args2]);
     };
   };
 }
