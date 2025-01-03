@@ -2,17 +2,15 @@ export default function throttle(func, wait = 0) {
   let shouldThrottle = false;
 
   return function (...args) {
-    if (shouldThrottle) {
-      return;
-    }
+    if (shouldThrottle) return;
 
     shouldThrottle = true;
-
     setTimeout(() => {
       shouldThrottle = false;
     }, wait);
 
-    func.apply(this, args);
+    const context = this;
+    func.apply(context, args);
   };
 }
 
