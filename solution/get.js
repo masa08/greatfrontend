@@ -4,19 +4,18 @@
 // get(jane, 'profile.name.firstName'); // undefined
 
 export default function get(objectParam, pathParam, defaultValue) {
-  const path = Array.isArray(pathParam) ? pathParam : pathParam.split('.');
+  const pathArray = Array.isArray(pathParam) ? pathParam : pathParam.split('.');
 
   let index = 0;
-  let length = path.length;
+  let arrLength = pathArray.length;
   let object = objectParam;
-
-  while (object != null && index < length) {
-    object = object[String(path[index])];
+  while (object != null && index < arrLength) {
+    object = object[String(pathArray[index])];
     index++;
   }
 
-  const value = index && index === length ? object : undefined;
-  return value != undefined ? value : defaultValue;
+  const value = index === arrLength ? object : undefined;
+  return typeof value != 'undefined' ? value : defaultValue;
 }
 
 const john = {
