@@ -1,20 +1,20 @@
 export default function promiseAll(iterable) {
   return new Promise((resolve, reject) => {
-    const results = new Array(iterable.length);
-    let unresolved = iterable.length;
+    let unresolvedCount = iterable.length;
+    const results = new Array(unresolvedCount);
 
-    if (unresolved == 0) {
+    if (unresolvedCount == 0) {
       resolve(results);
       return;
     }
 
     iterable.forEach(async (item, index) => {
       try {
-        const value = await item;
-        results[index] = value;
-        unresolved -= 1;
-
-        if (unresolved == 0) resolve(results);
+        const result = await item;
+        results[index] = result
+        unresolvedCount -= 1
+        
+        if (unresolvedCount == 0) resolve(results)
       } catch (err) {
         reject(err);
       }
